@@ -50,7 +50,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <upstream.version>0.1.6</upstream.version>
-        <upstream.url>https://raw.github.com/PascalPrecht/angular-translate-loader-static-files/${upstream.version}/src</upstream.url>
+        <upstream.url>https://raw.github.com/PascalPrecht/bower-angular-translate-loader-static-files/${upstream.version}</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
     
@@ -69,8 +69,20 @@
                         </goals>
                         <configuration>
                             <url>${upstream.url}</url>
-                            <fromFile>translateStaticFilesLoader.js</fromFile>
-                            <toFile>${destDir}/${project.artifactId}.js</toFile>
+                            <fromFile>angular-translate-loader-static-files.js</fromFile>
+                            <toDir>${destDir}</toDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>download-min-js</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <url>${upstream.url}</url>
+                            <fromFile>angular-translate-loader-static-files.min.js</fromFile>
+                            <toDir>${destDir}</toDir>
                         </configuration>
                     </execution>
                 </executions>
